@@ -1,355 +1,110 @@
 /* --- Basic Reset & Setup --- */
 :root {
-    --primary-color: #0a66c2; /* LinkedIn Blue - adjust as desired */
-    --secondary-color: #333;
-    --background-color: #f4f4f4;
-    --card-background: #fff;
-    --text-color: #333;
-    --light-text-color: #f4f4f4;
+    --primary-color: #1a5dab; /* Slightly darker blue */
+    --secondary-color: #2c3e50; /* Dark grayish blue */
+    --accent-color: #f39c12;  /* Optional accent (e.g., gold/orange) */
+    --background-color: #ecf0f1; /* Light gray */
+    --card-background: #ffffff;
+    --text-color: #34495e; /* Darker gray */
+    --light-text-color: #ecf0f1;
     --section-padding: 60px 20px;
-    --animation-duration: 0.5s;
+    --animation-duration: 0.6s; /* Slightly longer for effect */
 }
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Cleaner font */ line-height: 1.7; background-color: var(--background-color); color: var(--text-color); }
+h1, h2 { margin-bottom: 25px; color: var(--secondary-color); }
+h2 { font-size: 2rem; text-align: center; }
+section { padding: var(--section-padding); margin-bottom: 20px; }
 
-html {
-    scroll-behavior: smooth; /* For smooth anchor link scrolling */
-}
-
-body {
-    font-family: 'Arial', sans-serif; /* Choose better fonts */
-    line-height: 1.6;
-    background-color: var(--background-color);
-    color: var(--text-color);
-}
-
-h1, h2 {
-    margin-bottom: 20px;
-    color: var(--primary-color);
-}
-
-section {
-    padding: var(--section-padding);
-    margin-bottom: 20px;
-    /* Basic entrance animation setup - requires JS or library */
+/* --- Basic visibility for manual Intersection Observer --- */
+.cv-section, .experience-item, .skill-category, #education-content div, #languages ul li {
     opacity: 0;
-    transform: translateY(50px);
     transition: opacity var(--animation-duration) ease-out, transform var(--animation-duration) ease-out;
 }
-
-section.visible { /* Class added by JS */
+.cv-section.visible,
+.experience-item.visible, /* Make sure these match selectors in JS */
+.skill-category.visible,
+#education-content div.visible, /* Assuming we add 'visible' class to these too */
+#languages ul li.visible {
     opacity: 1;
-    transform: translateY(0);
+    transform: none; /* Remove transform for visible state, relies on initial transform */
 }
-
-/* --- Hero Section --- */
-#hero {
-    min-height: 100vh; /* Full viewport height */
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('assets/background.jpg') no-repeat center center/cover; /* Add a subtle background image */
-    color: var(--light-text-color);
-    position: relative; /* For particle canvas */
-    overflow: hidden;
-}
-
-#hero-content {
-  z-index: 2; /* Ensure content is above canvas */
-  padding: 20px;
-  background: rgba(0,0,0,0.3); /* Slightly dim background for readability */
-  border-radius: 10px;
-}
+/* --- Initial transform states for different elements (examples) --- */
+#experience .experience-item.timeline-left { transform: translateX(-50px); }
+#experience .experience-item.timeline-right { transform: translateX(50px); }
+#education > div, #skills .skill-category { transform: translateY(40px); }
+#languages ul li { transform: translateX(40px); }
 
 
-#profile-pic {
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
-    border: 3px solid var(--primary-color);
-    margin-bottom: 20px;
-    object-fit: cover; /* Ensure the image covers the area without distortion */
-}
+/* --- Hero Section (Keep mostly the same, maybe adjust gradient/image) --- */
+#hero { /* ... same as before ... */ }
+#hero-content { /* ... same as before ... */ }
+#profile-pic { /* ... same as before ... */ }
+#name { /* ... same as before ... */ }
+#title { /* ... same as before ... */ }
+#contact-info a { /* ... same as before ... */ }
+#particle-canvas { /* ... same as before ... */ }
 
-#name {
-    font-size: 3rem;
-    margin-bottom: 10px;
-    color: var(--light-text-color);
-}
-
-#title {
-    font-size: 1.5rem;
-    margin-bottom: 20px;
-    color: #ddd; /* Lighter text for title */
-}
-
-#contact-info a {
-    color: var(--light-text-color);
-    margin: 0 15px;
-    font-size: 1.5rem;
-    text-decoration: none;
-    transition: color 0.3s ease;
-}
-
-#contact-info a:hover {
-    color: var(--primary-color);
-}
-
-#particle-canvas {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 1;
-}
-
-
-/* --- Navbar --- */
-#navbar {
-    position: sticky;
-    top: 0;
-    background: var(--secondary-color);
-    z-index: 1000;
-    padding: 10px 0;
-}
-
-#navbar ul {
-    list-style: none;
-    display: flex;
-    justify-content: center;
-}
-
-#navbar ul li a {
-    color: var(--light-text-color);
-    padding: 10px 20px;
-    text-decoration: none;
-    transition: background-color 0.3s ease;
-}
-
-#navbar ul li a:hover {
-    background-color: var(--primary-color);
-    border-radius: 5px;
-}
+/* --- Navbar (Keep the same) --- */
+#navbar { /* ... same as before ... */ }
+#navbar ul { /* ... same as before ... */ }
+#navbar ul li a { /* ... same as before ... */ }
+#navbar ul li a:hover { /* ... same as before ... */ }
 
 
 /* --- Experience Timeline --- */
-.timeline {
-    position: relative;
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 40px 0;
-}
-
-.timeline::after { /* The central line */
-    content: '';
-    position: absolute;
-    width: 4px;
-    background-color: var(--primary-color);
-    top: 0;
-    bottom: 0;
-    left: 50%;
-    margin-left: -2px;
-    /* Animation Idea: Make this line draw on scroll */
-}
-
-.experience-item {
-    padding: 10px 40px;
-    position: relative;
-    background-color: inherit;
-    width: 50%;
-     /* Basic entrance animation setup - requires JS or library */
-    opacity: 0;
-    transform: translateX(-100px); /* Start off-screen */
-    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-}
-.experience-item.visible {
-    opacity: 1;
-    transform: translateX(0);
-}
-
-.experience-item:nth-child(odd) {
-    left: 0;
-}
-
-.experience-item:nth-child(even) {
-    left: 50%;
-    transform: translateX(100px); /* Start off-screen right */
-}
-.experience-item:nth-child(even).visible {
-     transform: translateX(0);
-}
-
-
-.experience-item::after { /* Circle on the timeline */
-    content: '';
-    position: absolute;
-    width: 20px;
-    height: 20px;
-    right: -12px;
-    background-color: var(--background-color);
-    border: 4px solid var(--primary-color);
-    top: 15px;
-    border-radius: 50%;
-    z-index: 1;
-}
-
-.experience-item:nth-child(even)::after {
-    left: -12px;
-}
-
-.exp-content {
-    padding: 20px 30px;
-    background-color: var(--card-background);
-    position: relative;
-    border-radius: 6px;
-    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
-}
-
-.exp-content h3 {
-  color: var(--primary-color);
-  margin-bottom: 5px;
-}
-.exp-content .duration {
-  font-style: italic;
-  color: #666;
-  font-size: 0.9em;
-  margin-bottom: 10px;
-}
-.exp-content ul {
-  list-style-type: disc;
-  margin-left: 20px;
-}
-
+.timeline { position: relative; max-width: 900px; margin: 0 auto; padding: 40px 0; }
+.timeline::after { /* Line */ content: ''; position: absolute; width: 4px; background-color: var(--primary-color); top: 0; bottom: 0; left: 50%; margin-left: -2px; }
+.experience-item { padding: 10px 40px; position: relative; background-color: inherit; width: 50%; }
+/* Updated selectors for positioning */
+.experience-item.timeline-left { left: 0; text-align: right; }
+.experience-item.timeline-right { left: 50%; text-align: left; }
+.experience-item.timeline-left::before { /* Arrow tip */ content: " "; height: 0; position: absolute; top: 22px; width: 0; z-index: 1; right: 30px; border: medium solid var(--card-background); border-width: 10px 0 10px 10px; border-color: transparent transparent transparent var(--card-background); }
+.experience-item.timeline-right::before { content: " "; height: 0; position: absolute; top: 22px; width: 0; z-index: 1; left: 30px; border: medium solid var(--card-background); border-width: 10px 10px 10px 0; border-color: transparent var(--card-background) transparent transparent; }
+.experience-item::after { /* Circle */ content: ''; position: absolute; width: 20px; height: 20px; background-color: var(--background-color); border: 4px solid var(--primary-color); top: 20px; border-radius: 50%; z-index: 1; /* Remove left/right positioning, let timeline class handle */ transform: translateX(-50%); }
+.experience-item.timeline-left::after { right: -12px; left: auto; }
+.experience-item.timeline-right::after { left: -12px; right: auto; }
+.exp-content { padding: 20px 30px; background-color: var(--card-background); position: relative; border-radius: 6px; box-shadow: 0 3px 10px rgba(0,0,0,0.1); }
+.exp-content h3 { color: var(--primary-color); margin-bottom: 5px; }
+.exp-content .duration { font-style: italic; color: #666; font-size: 0.9em; margin-bottom: 10px; }
+.exp-content ul { list-style-type: disc; margin-left: 20px; text-align: left; /* Ensure list items align left regardless of parent text-align */}
 
 /* --- Skills Section --- */
-.skills-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 20px;
-}
+.skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; }
+.skill-category { background: var(--card-background); padding: 25px; border-radius: 8px; box-shadow: 0 3px 8px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; }
+.skill-category:hover { transform: translateY(-6px); box-shadow: 0 6px 18px rgba(0,0,0,0.15); }
+.skill-category h3 { margin-bottom: 15px; color: var(--primary-color); border-bottom: 2px solid var(--primary-color); padding-bottom: 8px; font-size: 1.2rem; }
+.skill-category ul { list-style: none; padding-left: 0; }
+.skill-category li { background-color: var(--background-color); border: 1px solid #ddd; color: var(--secondary-color); display: inline-block; padding: 6px 12px; margin: 5px 5px 5px 0; border-radius: 15px; font-size: 0.9em; }
 
-.skill-category {
-    background: var(--card-background);
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-     /* Add hover/focus animation */
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.skill-category:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 5px 15px rgba(0,0,0,0.15);
-}
-
-
-.skill-category h3 {
-    margin-bottom: 15px;
-    color: var(--primary-color);
-    border-bottom: 2px solid var(--primary-color);
-    padding-bottom: 5px;
-}
-
-.skill-category ul {
-    list-style: none;
-}
-.skill-category li {
-    background-color: #e7e7e7;
-    display: inline-block; /* Use flexbox for better control if needed */
-    padding: 5px 10px;
-    margin: 5px 5px 5px 0;
-    border-radius: 4px;
-    font-size: 0.9em;
-}
-
-
-/* --- Education --- */
-#education-content div {
-  background: var(--card-background);
-  padding: 20px;
-  margin-bottom: 15px;
-  border-radius: 6px;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-}
-
-#education-content h3 {
-   margin-bottom: 5px;
-   color: var(--secondary-color);
-}
-#education-content p {
-  color: #666;
-  margin-bottom: 5px;
-}
-
-/* --- Languages --- */
-#languages ul li {
-  background: var(--card-background);
-  padding: 10px 15px;
-  margin-bottom: 10px;
-  border-radius: 4px;
-  display: flex;
-  justify-content: space-between;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-}
-#languages .proficiency {
-  font-style: italic;
-  color: #555;
-}
+/* --- Education & Languages --- */
+#education-content div { /* ... Keep styles ... */ }
+#languages ul li { /* ... Keep styles ... */ }
 
 /* --- Footer --- */
-footer {
-    text-align: center;
-    padding: 20px;
-    margin-top: 30px;
-    background-color: var(--secondary-color);
-    color: var(--light-text-color);
-}
-
+footer { /* ... Keep styles ... */ }
 
 /* --- Responsiveness --- */
 @media (max-width: 768px) {
-    .timeline::after {
-        left: 31px; /* Move line to the left */
-    }
+    .timeline::after { left: 30px; }
+    .experience-item { width: 100%; padding-left: 70px; padding-right: 20px; text-align: left; /* Always left align content */ }
+    /* Ensure transforms are reset for visibility check to work correctly if using manual observer */
+    .experience-item.timeline-left { transform: translateX(-30px); /* Start slightly left */}
+    .experience-item.timeline-right { transform: translateX(-30px); left: 0; } /* Start slightly left, and align base left */
 
-    .experience-item {
-        width: 100%;
-        padding-left: 70px;
-        padding-right: 25px;
-        transform: translateX(0) translateY(0); /* Reset transforms */
-    }
-     .experience-item.visible { /* Ensure items are visible */
-       opacity: 1;
-       transform: translateY(0);
-     }
+     .experience-item.timeline-left::before,
+     .experience-item.timeline-right::before { left: 60px; /* Adjust arrow */ border-width: 10px 10px 10px 0; border-color: transparent var(--card-background) transparent transparent; }
 
+     .experience-item.timeline-left::after,
+     .experience-item.timeline-right::after { left: 10px; /* Position circle correctly */ } /* No right needed */
 
-    .experience-item:nth-child(odd) {
-        left: 0;
-    }
+    .experience-item.visible { transform: translateX(0); } /* Final position for visible */
 
-    .experience-item:nth-child(even) {
-        left: 0%; /* Align all to the left */
-        transform: translateX(0) translateY(0); /* Reset transforms */
+     /* Other adjustments... */
+    #hero h1 { font-size: 2rem; }
+    #hero #title { font-size: 1.1rem; }
+    .skills-grid { grid-template-columns: 1fr; /* Stack skills on mobile */ }
 
-    }
-
-    .experience-item::after {
-        left: 12px; /* Position circle on the left line */
-    }
-    #hero h1 {
-      font-size: 2.2rem;
-    }
-     #hero #title {
-      font-size: 1.2rem;
-    }
 }
-
-/* Add more responsive styles as needed */

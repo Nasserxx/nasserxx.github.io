@@ -4,15 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nasser Awad - CV</title>
-    <link rel="stylesheet" href="./index/style.css">
+    <!-- ** CORRECTED CSS PATH ** -->
+    <link rel="stylesheet" href="index/style.css">
     <!-- Link to an animation library CSS if you use one -->
     <!-- Example: <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" /> -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"> <!-- For Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
 
     <header id="hero">
         <div class="hero-content">
+             <!-- src will be set by JS using the path from data.json -->
              <img id="profile-pic" src="" alt="Nasser Awad Profile Picture">
              <h1 id="name"></h1>
              <p id="title"></p>
@@ -20,8 +22,7 @@
                  <!-- Icons and links will be added by JS -->
              </div>
         </div>
-        <!-- Optional: Add canvas here for particle effects -->
-        <canvas id="particle-canvas"></canvas>
+         <canvas id="particle-canvas"></canvas>
     </header>
 
     <nav id="navbar">
@@ -61,7 +62,6 @@
                 <!-- Language items will be added by JS -->
             </ul>
         </section>
-
     </main>
 
     <footer>
@@ -71,9 +71,11 @@
     <!-- Scripts -->
     <!-- Animation Library JS (if used) -->
     <!-- Example: <script src="https://unpkg.com/aos@next/dist/aos.js"></script> -->
-    <!-- Particle Library JS (if used) -->
+     <!-- Particle Library JS (if used) -->
     <!-- Example: <script src="https://cdn.jsdelivr.net/npm/tsparticles@2/tsparticles.bundle.min.js"></script> -->
-    <script src="./index/script.js" defer></script>
+
+    <!-- ** CORRECTED SCRIPT PATH ** -->
+    <script src="index/script.js" defer></script>
 
 </body>
 </html>

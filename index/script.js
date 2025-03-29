@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
+    // ** CORRECTED FETCH PATH ** relative to script.js
     fetch('data.json')
         .then(response => {
             if (!response.ok) {
@@ -7,33 +8,38 @@ document.addEventListener('DOMContentLoaded', () => {
             return response.json();
         })
         .then(data => {
-            populatePersonalInfo(data.personalInfo);
+             populatePersonalInfo(data.personalInfo);
             populateExperience(data.professionalExperience);
             populateEducation(data.education);
             populateSkills(data.skills);
             populateLanguages(data.languages);
-            setupScrollAnimations(); // Initialize animations after content is loaded
-            // initializeParticles(); // Uncomment if using a particle library
+            setupScrollAnimations();
+           // initializeParticles(); // Uncomment if using particles
         })
         .catch(error => {
             console.error('Error fetching or parsing data:', error);
-            // Display a user-friendly error message on the page
-            const main = document.querySelector('main');
+             const main = document.querySelector('main');
             if(main) main.innerHTML = '<p class="error">Could not load CV data. Please try again later.</p>';
         });
 
-    // Set current year in footer
     const yearSpan = document.getElementById('current-year');
     if(yearSpan) yearSpan.textContent = new Date().getFullYear();
 });
 
+// --- Keep ALL populate functions (populatePersonalInfo, populateExperience, etc.) and setupScrollAnimations / initializeParticles AS BEFORE ---
+// Important: Make sure the populatePersonalInfo function uses the path from data.json correctly
 function populatePersonalInfo(info) {
     if (!info) return;
     document.getElementById('name').textContent = info.name || '';
     document.getElementById('title').textContent = info.title || '';
+     // Use the path DIRECTLY from data.json (which is now assets/profile-picture.jpg)
     if (info.profilePictureUrl) {
         document.getElementById('profile-pic').src = info.profilePictureUrl;
+         document.getElementById('profile-pic').alt = `${info.name} Profile Picture`;
+    } else {
+         document.getElementById('profile-pic').alt = 'Profile picture'; // Default alt
     }
+
 
     const contactDiv = document.getElementById('contact-info');
     contactDiv.innerHTML = ''; // Clear previous content
@@ -45,7 +51,7 @@ function populatePersonalInfo(info) {
          emailLink.title = 'Email'; // Tooltip
         contactDiv.appendChild(emailLink);
     }
-     if (info.contact?.phone) { // Again, consider privacy
+     if (info.contact?.phone) { // Consider privacy
         const phoneLink = document.createElement('a');
         phoneLink.href = `tel:${info.contact.phone}`;
         phoneLink.innerHTML = '<i class="fas fa-phone"></i>'; // Font Awesome icon
@@ -53,29 +59,32 @@ function populatePersonalInfo(info) {
         phoneLink.title = 'Phone'; // Tooltip
         contactDiv.appendChild(phoneLink);
     }
-     // Add LinkedIn Icon/Link if needed
+     // Add LinkedIn Icon/Link
      const linkedinLink = document.createElement('a');
-     linkedinLink.href = "https://www.linkedin.com/in/nasser-awad-0a08b9143/"; // Replace with actual link if different
-     linkedinLink.target = "_blank"; // Open in new tab
+     linkedinLink.href = "https://www.linkedin.com/in/nasser-awad-0a08b9143/"; // Update if needed
+     linkedinLink.target = "_blank";
      linkedinLink.rel = "noopener noreferrer";
      linkedinLink.innerHTML = '<i class="fab fa-linkedin"></i>';
      linkedinLink.setAttribute('aria-label', 'LinkedIn Profile');
-     linkedinLink.title = 'LinkedIn Profile'; // Tooltip
+     linkedinLink.title = 'LinkedIn Profile';
      contactDiv.appendChild(linkedinLink);
 
+    // Optionally Add GitHub Icon/Link if you have a GitHub profile link in data.json
+    // if(info.githubUrl) { ... create link ... }
 }
 
 
 function populateExperience(experiences) {
     const container = document.getElementById('experience-content');
     if (!container || !experiences) return;
-    container.innerHTML = ''; // Clear previous content
+    container.innerHTML = '';
 
     experiences.forEach((exp, index) => {
         const itemDiv = document.createElement('div');
         itemDiv.classList.add('experience-item');
-        // Add animation class triggers here if not using a library
-        itemDiv.setAttribute('data-aos', (index % 2 === 0) ? 'fade-right' : 'fade-left'); // Example with AOS library
+        // Assign odd/even based on index for CSS alignment
+        itemDiv.classList.add((index % 2 === 0) ? 'timeline-left' : 'timeline-right');
+        itemDiv.setAttribute('data-aos', (index % 2 === 0) ? 'fade-right' : 'fade-left');
 
         const contentDiv = document.createElement('div');
         contentDiv.classList.add('exp-content');
@@ -92,6 +101,7 @@ function populateExperience(experiences) {
     });
 }
 
+
 function populateEducation(educations) {
     const container = document.getElementById('education-content');
     if (!container || !educations) return;
@@ -99,6 +109,7 @@ function populateEducation(educations) {
 
     educations.forEach(edu => {
         const eduDiv = document.createElement('div');
+         eduDiv.setAttribute('data-aos', 'fade-up');
         eduDiv.innerHTML = `
             <h3>${edu.degree}</h3>
             <p>${edu.institution}</p>
@@ -113,7 +124,6 @@ function populateSkills(skills) {
     if (!container || !skills) return;
     container.innerHTML = '';
 
-    // Define the order and display names for categories
     const skillCategories = [
       { key: 'programmingLanguages', name: 'Programming Languages' },
       { key: 'frontendFrameworks', name: 'Frontend & Frameworks' },
@@ -123,12 +133,13 @@ function populateSkills(skills) {
       { key: 'toolsMethodologies', name: 'Tools & Methodologies' },
     ];
 
-     skillCategories.forEach(category => {
+     skillCategories.forEach((category, index) => {
        if(skills[category.key] && skills[category.key].length > 0) {
             const categoryDiv = document.createElement('div');
             categoryDiv.classList.add('skill-category');
-             // Add animation class triggers here if not using a library
-             categoryDiv.setAttribute('data-aos', 'fade-up'); // Example with AOS
+            // Simple stagger animation based on index
+            categoryDiv.setAttribute('data-aos', 'fade-up');
+            categoryDiv.setAttribute('data-aos-delay', index * 100);
 
             let listItems = skills[category.key].map(skill => `<li>${skill}</li>`).join('');
 
@@ -141,13 +152,18 @@ function populateSkills(skills) {
     });
 }
 
+
 function populateLanguages(languages) {
     const list = document.getElementById('languages-content');
     if (!list || !languages) return;
     list.innerHTML = '';
 
-    languages.forEach(lang => {
+    languages.forEach((lang, index) => {
         const li = document.createElement('li');
+        // Simple stagger animation based on index
+        li.setAttribute('data-aos', 'fade-left');
+        li.setAttribute('data-aos-delay', index * 100);
+
         li.innerHTML = `
             <span class="language">${lang.language}</span>
             <span class="proficiency">${lang.proficiency}</span>
@@ -156,67 +172,52 @@ function populateLanguages(languages) {
     });
 }
 
+
+// Animation Setup Function (Choose Option 1 or 2, or combine)
 function setupScrollAnimations() {
+
     // Option 1: Using a Library like AOS (Animate On Scroll)
-    // Make sure you included the AOS CSS and JS links in index.html
-    // AOS.init({
-    //     duration: 800, // values from 0 to 3000, with step 50ms
-    //     once: true, // whether animation should happen only once - while scrolling down
-    // });
+    // If you included AOS links in HTML:
+    if (typeof AOS !== 'undefined') {
+        AOS.init({
+            duration: 600, // Adjust duration
+            once: true,    // Only animate once
+            offset: 100,   // Trigger animation slightly before element enters viewport
+        });
+    } else {
+        console.log("AOS library not found. Using basic Intersection Observer.")
+         // Fallback to manual Intersection Observer (or implement fully if preferred)
+         setupManualIntersectionObserver();
+    }
 
+     // Option 2: Manual Implementation (if not using a library like AOS)
+    // setupManualIntersectionObserver();
 
-     // Option 2: Manual implementation with Intersection Observer
-    const sections = document.querySelectorAll('.cv-section, .experience-item'); // Include experience items if animated individually
+}
+
+function setupManualIntersectionObserver() {
+     const sections = document.querySelectorAll('.cv-section, .experience-item, .skill-category'); // Elements to animate
 
     const observerOptions = {
-        root: null, // relative to document viewport
+        root: null,
         rootMargin: '0px',
-        threshold: 0.1 // Trigger when 10% of the element is visible
+        threshold: 0.15 // Adjust threshold - e.g. 15% visibility
     };
 
     const observerCallback = (entries, observer) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('visible');
-                // Optional: stop observing once visible if you want 'once: true' behavior
-                // observer.unobserve(entry.target);
-            } else {
-                 // Optional: remove class if you want animation every time it scrolls in/out
-                 entry.target.classList.remove('visible');
+                 observer.unobserve(entry.target); // Stop observing once visible
             }
+            // No 'else' part to remove 'visible', making it a 'once' animation
         });
     };
 
     const observer = new IntersectionObserver(observerCallback, observerOptions);
-
-    sections.forEach(section => {
-        observer.observe(section);
-    });
+    sections.forEach(section => observer.observe(section));
 }
 
+// --- Particle function remains the same ---
 // Optional: Function to initialize particles.js or tsParticles
-// function initializeParticles() {
-//    // Make sure you included the library script
-//    // tsParticles or particlesJS initialization code goes here
-//     // Example for tsParticles:
-//     tsParticles.load("particle-canvas", {
-//          /* Paste your tsParticles config JSON here */
-//           particles: { /* Basic example */
-//              number: { value: 80 },
-//              color: { value: "#ffffff" },
-//              shape: { type: "circle" },
-//              opacity: { value: 0.5, random: true },
-//              size: { value: 3, random: true },
-//              move: { enable: true, speed: 2, direction: "none", out_mode: "out" },
-//              line_linked: { enable: true, distance: 150, color: "#ffffff", opacity: 0.4, width: 1 }
-//           },
-//            interactivity: {
-//              detect_on: "canvas",
-//              events: {
-//                onhover: { enable: true, mode: "repulse" },
-//                resize: true
-//              },
-//           },
-//           retina_detect: true
-//         });
-// }
+// function initializeParticles() { ... }

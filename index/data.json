@@ -1,20 +1,19 @@
 {
     "personalInfo": {
       "name": "Nasser Awad",
-      "title": "Full Stack Engineer | Software Developer", // Or choose one
+      "title": "Full Stack Engineer | Software Developer", 
       "contact": {
-        "phone": "015771189301", // Consider privacy implications
+        "phone": "015771189301", 
         "email": "nassern502@yahoo.com"
       },
-      // "birthdate": "July 19, 1992", // Usually omit birthdate on public CVs
-      "profilePictureUrl": "assets/profile-picture.jpg" // Place your photo here
+      "profilePictureUrl": "assets/profile-picture.jpg" 
     },
     "professionalExperience": [
       {
         "roleTitle": "Full Stack Engineer",
-        "duration": "Oct 2024 – Present", // Or relative like "Current Role"
-        "description": "Contributing to cash systems software development.", // Generic placeholder since details aren't on CV for this role yet.
-        "responsibilities": [] // Add key tasks once known
+        "duration": "Oct 2024 – Present", 
+        "description": "Contributing to cash systems software development.",
+        "responsibilities": [] 
       },
       {
         "roleTitle": "Full Stack Engineer",
@@ -92,7 +91,6 @@
            "Developed a 3D visualization of kinematics using Qt C++."
         ]
       }
-      // Add more past roles here following the same structure
     ],
     "education": [
       {
