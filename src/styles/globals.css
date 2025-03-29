@@ -1,0 +1,161 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Light mode variables */
+  --primary-color: #2980b9; /* Slightly softer blue */
+  --secondary-color: #2c3e50; /* Dark grayish blue */
+  --accent-color: #f39c12;  /* Orange accent */
+  --background-color: #f8f9fa; /* Very light gray */
+  --card-background: #ffffff;
+  --text-color: #34495e;
+  --light-text-color: #f8f9fa;
+  
+  /* Dark mode variables */
+  --dark-primary-color: #3498db; /* Brighter blue */
+  --dark-secondary-color: #1a202c; /* Dark slate */
+  --dark-accent-color: #f39c12;  /* Same orange accent */
+  --dark-background-color: #121212; /* Near black */
+  --dark-card-background: #1e1e1e; /* Dark gray */
+  --dark-text-color: #e2e8f0;
+  
+  /* Spacing */
+  --section-padding: 80px 20px;
+  
+  /* Effects */
+  --card-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+  --border-radius: 8px;
+  --transition-speed: 0.4s;
+}
+
+/* Base styles */
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  line-height: 1.7;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  overflow-x: hidden;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Dark mode overrides */
+.dark body {
+  background-color: var(--dark-background-color);
+  color: var(--dark-text-color);
+}
+
+.dark .bg-white {
+  background-color: var(--dark-card-background);
+}
+
+.dark .text-secondary {
+  color: var(--dark-text-color);
+}
+
+.dark .bg-gray-50,
+.dark .bg-gray-100 {
+  background-color: #1a1a1a;
+}
+
+.dark .border-gray-200 {
+  border-color: #333;
+}
+
+h1, h2, h3 {
+  font-family: 'Roboto Slab', serif;
+  font-weight: 700;
+}
+
+h2 {
+  @apply text-4xl mb-10 text-center relative pb-4;
+  color: var(--secondary-color);
+}
+
+.dark h2 {
+  color: var(--dark-text-color);
+}
+
+h2::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 4px;
+  background-color: var(--primary-color);
+  border-radius: 2px;
+}
+
+.dark h2::after {
+  background-color: var(--dark-primary-color);
+}
+
+a {
+  color: var(--primary-color);
+  text-decoration: none;
+  transition: color var(--transition-speed) ease;
+}
+
+a:hover {
+  color: var(--accent-color);
+}
+
+.dark a {
+  color: var(--dark-primary-color);
+}
+
+.dark a:hover {
+  color: var(--dark-accent-color);
+}
+
+/* Back to top button */
+#back-to-top.visible {
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+/* Animation keyframes */
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
+  40% { transform: translateX(-50%) translateY(-10px); }
+  60% { transform: translateX(-50%) translateY(-5px); }
+}
+
+/* AOS fallback animations */
+.fade-in {
+  animation: fadeIn 0.8s ease forwards;
+}
+
+.fade-up {
+  animation: fadeUp 0.8s ease forwards;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes fadeUp {
+  from { 
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to { 
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  h2 {
+    @apply text-3xl;
+  }
+} 
