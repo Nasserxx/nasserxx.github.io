@@ -2,8 +2,14 @@ import { FC } from 'react';
 import cvData from '@/data/cv-data';
 import siteText from '@/data/site-text';
 
+// Define interfaces for skills data
+interface SkillCategory {
+  category: string;
+  items: string[];
+}
+
 // Transform the skills object into an array format for rendering
-const transformSkillsToArray = (skillsData: any) => {
+const transformSkillsToArray = (skillsData: any): SkillCategory[] => {
   if (!skillsData) return [];
   
   return [
@@ -58,7 +64,7 @@ const Skills: FC = () => {
                 </h3>
                 
                 <div className="flex flex-wrap gap-2">
-                  {category.items.map((skill, i) => (
+                  {category.items.map((skill: string, i: number) => (
                     <span 
                       key={i}
                       className="bg-white dark:bg-gray-800 text-primary dark:text-dark-primary px-3 py-1 rounded-md text-sm font-medium shadow-sm"

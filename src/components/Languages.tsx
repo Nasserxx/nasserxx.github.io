@@ -3,7 +3,7 @@ import cvData from '@/data/cv-data';
 import siteText from '@/data/site-text';
 
 // Ensure we have valid language data
-const getLanguages = () => {
+const getLanguages = (): Array<{language: string; proficiency: string; percentage?: number}> => {
   if (!cvData.languages || !Array.isArray(cvData.languages)) {
     return [];
   }

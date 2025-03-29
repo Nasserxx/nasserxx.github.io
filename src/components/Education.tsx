@@ -2,8 +2,16 @@ import { FC } from 'react';
 import cvData from '@/data/cv-data';
 import siteText from '@/data/site-text';
 
+// Define interface for the transformed education data
+interface TransformedEducationItem {
+  institution: string;
+  degree: string;
+  period: string;
+  details: string[];
+}
+
 // Transform education data to add missing fields if needed
-const transformEducationData = (education: any[]) => {
+const transformEducationData = (education: any[]): TransformedEducationItem[] => {
   return education.map(edu => ({
     institution: edu.institution,
     degree: edu.degree,
@@ -47,7 +55,7 @@ const Education: FC = () => {
                 {edu.details && edu.details.length > 0 && (
                   <div className="mt-4 text-gray-600 dark:text-gray-400">
                     <ul className="list-disc pl-5 space-y-1">
-                      {edu.details.map((detail, i) => (
+                      {edu.details.map((detail: string, i: number) => (
                         <li key={i}>{detail}</li>
                       ))}
                     </ul>
