@@ -1,0 +1,17 @@
+version: 2
+updates:
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    allow:
+      # Allow updates for specified actions only
+      - dependency-name: "actions/checkout"
+      - dependency-name: "actions/setup-node"
+      - dependency-name: "actions/upload-pages-artifact"
+      - dependency-name: "actions/deploy-pages"
+    ignore:
+      # Ignore updates for problematic actions
+      - dependency-name: "actions/upload-artifact"
+    assignees:
+      - "nasserxx" 

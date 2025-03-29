@@ -1,0 +1,11 @@
+name: workflow-settings
+# This file configures GitHub Actions workflows for this repository.
+
+actions:
+  # Explicitly specify which versions of actions to use
+  actions/checkout: 'v4'
+  actions/setup-node: 'v4'
+  actions/upload-pages-artifact: 'v2'
+  actions/deploy-pages: 'v3'
+  # The following is causing issues, so we disable it
+  actions/upload-artifact: '@disable' 
