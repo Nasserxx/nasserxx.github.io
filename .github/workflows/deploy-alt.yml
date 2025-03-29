@@ -43,4 +43,4 @@ jobs:
         with:
           artifact_name: github-pages
           preview: false
-          path: ./out 
+          path: ./build 
