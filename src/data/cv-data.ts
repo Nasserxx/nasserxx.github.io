@@ -66,14 +66,14 @@ const cvData: CVData = {
       linkedin: "https://www.linkedin.com/in/nasser-awad-0a08b9143/",
       github: "https://github.com/nasserxx",
       address: "ULM, Deutschland",
-      birthdate: "July 19, 1992"
+      birthdate: "July 19, 1992",
     },
-    profilePictureUrl: "/data/id.png"
+    profilePictureUrl: "/data/id.png",
   },
   about: [
     "Highly motivated and experienced Full Stack Engineer with a proven track record in designing, developing, and deploying robust web applications and backend services.",
     "Specializing in C#, ASP.NET, Python/Django, and cloud technologies like Azure and AWS. Possesses strong skills in Infrastructure as Code (Pulumi), CI/CD pipelines (Azure DevOps, Jenkins), database management (SQL, NoSQL), and implementing security best practices.",
-    "Passionate about optimizing performance, ensuring high availability, and contributing effectively within collaborative Agile/Scrum environments. Eager to leverage technical expertise and problem-solving abilities to drive innovation and success."
+    "Passionate about optimizing performance, ensuring high availability, and contributing effectively within collaborative Agile/Scrum environments. Eager to leverage technical expertise and problem-solving abilities to drive innovation and success.",
   ],
   professionalExperience: [
     {
@@ -82,10 +82,7 @@ const cvData: CVData = {
       roleTitle: "Full Stack Engineer",
       duration: "Oct 2024 – Present",
       responsibilities: [
-        "Currently contributing to backend and frontend development for cash handling systems.",
-        "Focusing on secure and efficient API design.",
-        "Engaging with modern software engineering practices."
-      ]
+        "Currently contributing to Software Architecture including backend and frontend development for BillEVe Project."
     },
     {
       company: "Beurer GmbH",
@@ -106,8 +103,8 @@ const cvData: CVData = {
         "Managed updates, security patches, and performance optimizations.",
         "Led incident response, root cause analysis, and resolution of critical failures.",
         "Authored and maintained technical documentation for system architecture, APIs, and deployment processes.",
-        "Contributed to requirements analysis, technical specifications, and system design improvements."
-      ]
+        "Contributed to requirements analysis, technical specifications, and system design improvements.",
+      ],
     },
     {
       company: "Adesso SE",
@@ -117,8 +114,8 @@ const cvData: CVData = {
       responsibilities: [
         "Developed a web-based workplace booking system using Angular (frontend) and Spring Boot (backend).",
         "Implemented unit and integration tests with JUnit, Mockito, ensuring compliance with SonarQube quality standards.",
-        "Used Hibernate (JPA) for ORM and structured entity relationships to maintain data integrity."
-      ]
+        "Used Hibernate (JPA) for ORM and structured entity relationships to maintain data integrity.",
+      ],
     },
     {
       company: "SAX-Power",
@@ -130,8 +127,8 @@ const cvData: CVData = {
         "Conducted bug analysis and resolution to enhance system performance.",
         "Implemented module and functional tests using Python's unittest framework.",
         "Deployed applications using Nginx (reverse proxy), Docker, Docker Compose, and Docker Swarm on AWS.",
-        "Installed and administered Ubuntu EC2 servers, ensuring optimal performance and security."
-      ]
+        "Installed and administered Ubuntu EC2 servers, ensuring optimal performance and security.",
+      ],
     },
     {
       company: "Daimler",
@@ -140,8 +137,8 @@ const cvData: CVData = {
       duration: "Sept 2020 – Jan 2021",
       responsibilities: [
         "Developed an interactive VR-based assembly planning tool using C# and Unity.",
-        "Integrated VR capabilities for an immersive planning experience."
-      ]
+        "Integrated VR capabilities for an immersive planning experience.",
+      ],
     },
     {
       company: "SWU Stadtwerke Ulm/Neu-Ulm",
@@ -150,8 +147,8 @@ const cvData: CVData = {
       duration: "Dec 2019 – July 2020",
       responsibilities: [
         "Designed and managed IP address infrastructures using an IP Address Management (IPAM) tool.",
-        "Automated data synchronization across multiple system databases, improving efficiency."
-      ]
+        "Automated data synchronization across multiple system databases, improving efficiency.",
+      ],
     },
     {
       company: "alphaQuest",
@@ -161,8 +158,8 @@ const cvData: CVData = {
       responsibilities: [
         "Managed internal IT security, ensuring compliance with security best practices.",
         "Administered workstation computers and provided technical support.",
-        "Performed data backup and recovery operations."
-      ]
+        "Performed data backup and recovery operations.",
+      ],
     },
     {
       company: "Voith",
@@ -174,32 +171,83 @@ const cvData: CVData = {
         "Analyzed Condition Monitoring data using R for predictive maintenance.",
         "Optimized and documented an Excel-based pitch diagram kinematics calculation tool.",
         "Extracted a mathematical model from Excel and implemented it in C++.",
-        "Developed a 3D visualization of kinematics using Qt C++."
-      ]
-    }
+        "Developed a 3D visualization of kinematics using Qt C++.",
+      ],
+    },
   ],
   education: [
     {
       degree: "Bachelor's Degree in Computer Science",
       institution: "Hochschule Ulm / Germany",
       duration: "Oct 2019 – Mar 2023",
-      details: [
-      ]
-    }
+      details: [],
+    },
   ],
   skills: {
-    programmingLanguages: ["C++", "Java", "Spring Boot", "Python", "Django", "R", "C#", "ASP.NET Core", "Express.js"],
-    frontendFrameworks: ["JavaScript", "TypeScript", "Vue.js", "React", "Angular", "Bootstrap", "jQuery", "HTML", "CSS"],
+    programmingLanguages: [
+      "C++",
+      "Java",
+      "Spring Boot",
+      "Python",
+      "Django",
+      "R",
+      "C#",
+      "ASP.NET Core",
+      "Express.js",
+    ],
+    frontendFrameworks: [
+      "JavaScript",
+      "TypeScript",
+      "Vue.js",
+      "React",
+      "Angular",
+      "Bootstrap",
+      "jQuery",
+      "HTML",
+      "CSS",
+    ],
     databases: ["MySQL", "SQL", "MongoDB", "Azure SQL", "Azure Blob Storage"],
-    devOpsCloud: ["Azure Cloud", "Azure DevOps", "AWS Cloud", "Docker", "Docker Compose", "Docker Swarm", "Jenkins CI/CD", "Pulumi (IaC)", "Nginx"],
-    networkingSecurity: ["CCNA", "Linux", "Shell Scripting", "Security Best Practices", "Authentication", "Authorization", "Encryption"],
-    toolsMethodologies: ["Git", "Scrum", "Jira", "JUnit", "Mockito", "Python unittest", "SonarQube", "Unity", "Qt C++"]
+    devOpsCloud: [
+      "Azure Cloud",
+      "Azure DevOps",
+      "AWS Cloud",
+      "Docker",
+      "Docker Compose",
+      "Docker Swarm",
+      "Jenkins CI/CD",
+      "Pulumi (IaC)",
+      "Nginx",
+    ],
+    networkingSecurity: [
+      "CCNA",
+      "Linux",
+      "Shell Scripting",
+      "Security Best Practices",
+      "Authentication",
+      "Authorization",
+      "Encryption",
+    ],
+    toolsMethodologies: [
+      "Git",
+      "Scrum",
+      "Jira",
+      "JUnit",
+      "Mockito",
+      "Python unittest",
+      "SonarQube",
+      "Unity",
+      "Qt C++",
+    ],
   },
   languages: [
     { language: "Arabic", proficiency: "Native", percentage: 100 },
-    { language: "German", proficiency: "C1 (Hochschule Certificate)", percentage: 80 },
-    { language: "English", proficiency: "Good Proficiency", percentage: 85 }
-  ]
+    {
+      language: "German",
+      proficiency: "C1 (Hochschule Certificate)",
+      percentage: 80,
+    },
+    { language: "English", proficiency: "Good Proficiency", percentage: 85 },
+  ],
 };
 
-export default cvData; 
+export default cvData;
