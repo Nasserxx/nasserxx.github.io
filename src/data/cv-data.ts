@@ -83,6 +83,7 @@ const cvData: CVData = {
       duration: "Oct 2024 – Present",
       responsibilities: [
         "Currently contributing to Software Architecture including backend and frontend development for BillEVe Project."
+      ]
     },
     {
       company: "Beurer GmbH",
