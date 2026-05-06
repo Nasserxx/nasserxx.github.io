@@ -1,4 +1,4 @@
-# Nasser Awad - Professional Portfolio
+#Professional Portfolio
 
 A modern, responsive CV and portfolio website built with Next.js, TypeScript, and Tailwind CSS.
 
